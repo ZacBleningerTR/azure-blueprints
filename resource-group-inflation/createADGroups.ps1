@@ -13,6 +13,8 @@ $readerADGroupName="MA-$subId-$rgName-Reader"
 Set-AzContext -SubscriptionId $subId 
 
 # create AD groups for owner, contributor, and reader
-New-AzADGroup -DisplayName $ownerADGroupName -MailNickname "$ownerADGroupName-mail"
-New-AzADGroup -DisplayName $contributorADGroupName -MailNickname "$contributorADGroupName-mail"
-New-AzADGroup -DisplayName $readerADGroupName -MailNickname "$readerADGroupName-mail"
+#New-AzADGroup -DisplayName $ownerADGroupName -MailNickname "$ownerADGroupName-mail"
+#New-AzADGroup -DisplayName $contributorADGroupName -MailNickname "$contributorADGroupName-mail"
+#New-AzADGroup -DisplayName $readerADGroupName -MailNickname "$readerADGroupName-mail"
+
+
