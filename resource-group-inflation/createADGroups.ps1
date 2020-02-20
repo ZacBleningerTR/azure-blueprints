@@ -9,6 +9,10 @@ $ownerADGroupName="MA-$subId-$rgName-Owner"
 $contributorADGroupName="MA-$subId-$rgName-Contributor"
 $readerADGroupName="MA-$subId-$rgName-Reader"
 
+Write-Host "ownerADGroupName: $ownerADGroupName"
+Write-Host "contributorADGroupName: $contributorADGroupName"
+Write-Host "readerADGroupName: $readerADGroupName"
+
 # set Azure subscription
 Set-AzContext -SubscriptionId $subId 
 
