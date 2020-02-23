@@ -1,10 +1,11 @@
 #!/bin/bash
 
 subscription_id=$1
+resource_group=$2
 
-if [ -z $subscription_id || $resource_group ] 
+if [[ -z $subscription_id || -z $resource_group ]];
 then
-	echo "ERROR: Proper usage: createADGroups.sh {subscription_id} {resource_group}"
+	echo "ERROR: Proper usage: './createADGroups.sh {subscription_id} {resource_group}'"
 	exit 1
 fi
 
