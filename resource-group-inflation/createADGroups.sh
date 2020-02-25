@@ -17,9 +17,11 @@ reader_ad_group="MA-$subscription_id-$resource_group-Owner"
 az account set -s $subscription_id
 
 # create AD groups for owner, contributor, and reader
-az ad group create --display-name $owner_ad_group --mail-nickname $owner_ad_group --force false
-az ad group create --display-name $contributor_ad_group --mail-nickname $contributor_ad_group --force false
-az ad group create --display-name $reader_ad_group --mail-nickname $reader_ad_group --force false
+az ad group create --display-name "$owner_ad_group" --mail-nickname "$owner_ad_group" --force false
+az ad group create --display-name "$contributor_ad_group" --mail-nickname "$contributor_ad_group" --force false
+az ad group create --display-name "$reader_ad_group" --mail-nickname "$reader_ad_group" --force false
+
+## can we out put principal IDs of above to allow us to pass to role assignment ARM template?
 
 # retrieve AD group object IDs
 owner_object_id=$(az ad group show --group $owner_ad_group)
