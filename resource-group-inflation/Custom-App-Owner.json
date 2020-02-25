@@ -1,0 +1,15 @@
+{
+  "Name": "Custom-App-Owner-%sub%",
+  "IsCustom": true,
+  "Description": "Can modify resource group locks",
+  "Actions": [
+    "Microsoft.Authorization/locks/*",
+    "Microsoft.DataLakeStore/accounts/Superuser/action"
+  ],
+  "NotActions": [
+    "Microsoft.Resources/subscriptions/resourceGroups/Delete"
+  ],
+  "AssignableScopes": [
+    "/subscriptions/%sub%"
+  ]
+}
