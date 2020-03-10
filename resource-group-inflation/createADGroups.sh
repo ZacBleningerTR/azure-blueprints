@@ -26,15 +26,3 @@ reader_ad_group_mail="$(echo $owner_ad_group | cut -c41-100)-mail"
 az ad group create --display-name "$owner_ad_group" --mail-nickname "$owner_ad_group_mail" --force false
 az ad group create --display-name "$contributor_ad_group" --mail-nickname "$contributor_ad_group_mail" --force false
 az ad group create --display-name "$reader_ad_group" --mail-nickname "$reader_ad_group_mail" --force false
-
-## can we out put principal IDs of above to allow us to pass to role assignment ARM template?
-
-# retrieve AD group object IDs
-owner_object_id=$(az ad group show --group $owner_ad_group)
-contributor_object_id=$(az ad group show --group $contributor_ad_group)
-reader_object_id=$(az ad group show --group $reader_ad_group)
-
-# assign custom roles to AD groups
-az role assignment create --role "Custom-App-Owner-$subscription_id" --resource-group $resource_group --assignee-object-id $owner_object_id
-az role assignment create --role "Custom-App-Contributor-$subscription_id" --resource-group $resource_group --assignee-object-id $contributor_object_id
-az role assignment create --role "Reader" --resource-group $resource_group --assignee-object-id $reader_object_id

@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "userAssignedIdentity": {
+        "type": "string",
+        "defaultValue": "/subscriptions/05d8ed62-a373-4929-b59d-caca1a52f6d1/resourcegroups/eastus2-205257/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ResourceGroup-ManagerIdentity"
+      },
+      "utcValue": {
+        "type": "string",
+        "defaultValue": "[utcNow()]"
+      }
+    },
+    "variables": {},
+    "resources": [
+      {
+        "type": "Microsoft.Resources/deploymentScripts",
+        "apiVersion": "2019-10-01-preview",
+        "name": "resource-group-inflation",
+        "location": "[resourceGroup().location]",
+        "kind": "AzureCLI",
+        "identity": {
+          "type": "userAssigned",
+          "userAssignedIdentities": {
+            "[parameters('userAssignedIdentity')]": {}
+          }
+        },
+        "properties": {
+          "forceUpdateTag": "[parameters('utcValue')]",
+          "azCliVersion": "2.0.80",
+          "arguments": "[format(subscription().subscriptionId, resourceGroup().name)]",
+          "primaryScriptUri": "https://raw.githubusercontent.com/ZacBleningerTR/azure-blueprints/master/resource-group-inflation/createADGroups.sh",
+          "timeout": "PT30M",
+          "cleanupPreference": "OnSuccess",
+          "retentionInterval": "P1D"
+        }
+      }
+    ]
+  }
